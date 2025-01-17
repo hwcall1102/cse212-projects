@@ -11,20 +11,63 @@ public class CustomerService {
         // Test Cases
 
         // Test 1
-        // Scenario: 
-        // Expected Result: 
+        // Scenario: Add 1 customer and then serve(dequeue) customer
+        // Expected Result: Display added customer
         Console.WriteLine("Test 1");
-
-        // Defect(s) Found: 
+        var patron = new CustomerService(4);
+        patron.AddNewCustomer();
+        patron.ServeCustomer();        
+        // Defect(s) Found: serve customer should get customer before deleting
 
         Console.WriteLine("=================");
 
         // Test 2
-        // Scenario: 
-        // Expected Result: 
+        // Scenario: Can I add 2 customers and serve them in FIFO
+        // Expected Result: Should display added customers in order added/served
         Console.WriteLine("Test 2");
+        // patron = new CustomerService(4);
+        // patron.AddNewCustomer();
+        // patron.AddNewCustomer();
+        // Console.WriteLine($"Queue before serving: {patron}");
+        // patron.ServeCustomer();
+        // patron.ServeCustomer();
+        // Console.WriteLine($"after service: {patron}");
+        // Defect(s) Found: none
 
+        Console.WriteLine("=================");
+
+        // Test 3
+        // Scenario: response if queue is full
+        // Expected Result: should dispay error
+        Console.WriteLine("Test 3");
+        patron = new CustomerService(4);
+        patron.ServeCustomer();        
         // Defect(s) Found: 
+
+        Console.WriteLine("=================");
+
+        // Test 4
+        // Scenario: If exceeded max queue does it throw error
+        // Expected Result: should throw error for exceeding max queue
+        Console.WriteLine("Test 4");
+        patron = new CustomerService(2);
+        patron.AddNewCustomer();
+        patron.AddNewCustomer();
+        patron.AddNewCustomer();
+        Console.WriteLine($"Service Queue: {patron}");
+        
+        // Defect(s) Found: none
+
+        Console.WriteLine("=================");
+
+        // Test 5
+        // Scenario:
+        // Expected Result:
+        Console.WriteLine("Test 5");
+        patron = new CustomerService(0);
+        Console.WriteLine($"Size should be 10: {patron}");
+        
+        // Defect(s) Found: none
 
         Console.WriteLine("=================");
 
@@ -67,7 +110,7 @@ public class CustomerService {
     /// </summary>
     private void AddNewCustomer() {
         // Verify there is room in the service queue
-        if (_queue.Count > _maxSize) {
+        if (_queue.Count >= _maxSize) { // defect 3 should use >=
             Console.WriteLine("Maximum Number of Customers in Queue.");
             return;
         }
@@ -87,10 +130,17 @@ public class CustomerService {
     /// <summary>
     /// Dequeue the next customer and display the information.
     /// </summary>
-    private void ServeCustomer() {
-        _queue.RemoveAt(0);
-        var customer = _queue[0];
-        Console.WriteLine(customer);
+    private void ServeCustomer() { 
+        // need to check if there are customers in queue
+        if (_queue.Count <=0)
+        {
+            Console.WriteLine("Error: No Customers in Queue");
+        }
+        else {
+            var customer = _queue[0]; // reading customer before removing
+            _queue.RemoveAt(0); // defect 1 - delete should be after pulling customer
+            Console.WriteLine(customer);
+        }
     }
 
     /// <summary>
