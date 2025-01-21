@@ -1,4 +1,6 @@
+using System.Diagnostics;
 using System.Text.Json;
+using Microsoft.VisualStudio.TestPlatform.ObjectModel;
 
 public static class SetsAndMaps
 {
@@ -21,8 +23,24 @@ public static class SetsAndMaps
     /// <param name="words">An array of 2-character words (lowercase, no duplicates)</param>
     public static string[] FindPairs(string[] words)
     {
-        // TODO Problem 1 - ADD YOUR CODE HERE
-        return [];
+        // create an emptly hashset, run foreach loop for each x in words reverse() entry, hashset.contains reversed
+        // if so note pair together, if not add x to hashset
+
+        var pairsSet = new HashSet<string>();
+        var actual = new List<string>();
+        foreach (var word in words)
+        {
+            var reverseWord = string.Concat(word.Reverse());
+            if (pairsSet.Contains(reverseWord))
+            {
+                var result = ($"{word} & {reverseWord}");
+                actual.Add(result);
+            }
+            pairsSet.Add(word);
+            
+        }
+
+        return actual.ToArray();
     }
 
     /// <summary>
