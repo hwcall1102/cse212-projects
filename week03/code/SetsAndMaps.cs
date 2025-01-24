@@ -94,36 +94,31 @@ public static class SetsAndMaps
     {
         // compare the frequency characters occured within both words, if equal they are anagrams
         
-        // dictionary to store frequency of characters
-        // Dictionary<char, int> charCount = new Dictionary<char, int>();
+        // Create a dictionary to store character frequencies
+        Dictionary<char, int> charCount = new Dictionary<char, int>();
+        
+        var lowerWord1 = word1.ToLower();
+        var lowerWord2 = word2.ToLower();
+        var cleanWord1 = lowerWord1.Replace(" ","");
+        var cleanWord2 = lowerWord2.Replace(" ", "");
 
-        // // count frequency of each character in word1
+        
+        // Count frequency of each character in string s1
+        foreach (char ch in cleanWord1) 
+            charCount[ch] = charCount.GetValueOrDefault(ch, 0) + 1;
 
-        // foreach (char ch in word1)
-        // {
-        //     charCount[ch] = charCount.GetValueOrDefault(ch, 0) +1;
-        // };
+        // Count frequency of each character in string s2
+        foreach (char ch in cleanWord2) 
+            charCount[ch] = charCount.GetValueOrDefault(ch, 0) - 1;
 
-        // // count frequency of each character in word2
-
-        // foreach (char ch in word2)
-        // {
-        //     charCount[ch] = charCount.GetValueOrDefault(ch, 0) -1;
-        // };
-
-        // // make sure all counts are 0
-        // foreach (var x in charCount)
-        // {
-        //     var count = charCount.Sum((x => x.Value)*-1);
-
-        //     if (count == 0)
-        //     {
-        //         return true;
-        //     }
-        //     return false;
-        // };
-
-        return false;
+        // Check if all frequencies are zero
+        foreach (var pair in charCount) {
+            if (pair.Value != 0) 
+                return false;
+        }
+        
+        // If all conditions satisfied, they are anagrams
+        return true;
     }
 
     /// <summary>
@@ -157,6 +152,9 @@ public static class SetsAndMaps
         // on those classes so that the call to Deserialize above works properly.
         // 2. Add code below to create a string out each place a earthquake has happened today and its magitude.
         // 3. Return an array of these string descriptions.
+        
+
+
         return [];
     }
 }
