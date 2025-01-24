@@ -34,21 +34,18 @@ public class Maze
     {
         // FILL IN CODE
         // check bool maze map to see if available if move available, update _currx
-        foreach (var set in _mazeMap)
+        var key = (_currX, _currY);
+        var set = _mazeMap[key];
+        
+        if (set[0] == true)
         {
-            if (_mazeMap.ContainsKey((_currX, _currY)))
-            {
-                if (set.Value[0] == true)
-                {
-                    var newX = _currX - 1;
-                    _currX = newX;
-                }
-                else
-                {
-                    throw new InvalidOperationException("Can't go that way!");
-                }
-            }
+            var newX = _currX - 1;
+            _currX = newX;
         }
+        else
+        {
+            throw new InvalidOperationException("Can't go that way!");
+        }      
 
     }
 
@@ -58,20 +55,17 @@ public class Maze
     /// </summary>
     public void MoveRight()
     {
-        foreach (var set in _mazeMap)
+        var key = (_currX, _currY);
+        var set = _mazeMap[key];
+        
+        if (set[1] == true)
         {
-            if (_mazeMap.ContainsKey((_currX, _currY)))
-            {
-                if (set.Value[1] == true)
-                {
-                    var newX = _currX + 1;
-                    _currX = newX;
-                }
-                else
-                {
-                    throw new InvalidOperationException("Can't go that way!");
-                }
-            }
+            var newX = _currX + 1;
+            _currX = newX;
+        }
+        else
+        {
+            throw new InvalidOperationException("Can't go that way!");
         }
     }
 
@@ -81,19 +75,17 @@ public class Maze
     /// </summary>
     public void MoveUp()
     {
-        foreach (var set in _mazeMap)
+        var key = (_currX, _currY);
+        var set = _mazeMap[key];
+        
+        if (set[2] == true)
         {
-            if (_mazeMap.ContainsKey((_currX, _currY)))
-            {
-                if (set.Value[2] == true)
-                {
-                    _currY = _currY - 1;
-                }
-                else
-                {
-                    throw new InvalidOperationException("Can't go that way!");
-                }
-            }
+            var newY = _currY - 1;
+            _currY = newY;
+        }
+        else
+        {
+            throw new InvalidOperationException("Can't go that way!");
         }
     }
 
@@ -103,19 +95,17 @@ public class Maze
     /// </summary>
     public void MoveDown()
     {
-        foreach (var set in _mazeMap)
+        var key = (_currX, _currY);
+        var set = _mazeMap[key];
+        
+        if (set[3] == true)
         {
-            if (_mazeMap.ContainsKey((_currX, _currY)))
-            {
-                if (set.Value[3] == true)
-                {
-                    _currY = _currY + 1;
-                }
-                else
-                {
-                    throw new InvalidOperationException("Can't go that way!");
-                }
-            }
+            var newY = _currY + 1;
+            _currY = newY;
+        }
+        else
+        {
+            throw new InvalidOperationException("Can't go that way!");
         }
     }
 
