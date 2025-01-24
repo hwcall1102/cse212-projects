@@ -33,6 +33,23 @@ public class Maze
     public void MoveLeft()
     {
         // FILL IN CODE
+        // check bool maze map to see if available if move available, update _currx
+        foreach (var set in _mazeMap)
+        {
+            if (_mazeMap.ContainsKey((_currX, _currY)))
+            {
+                if (set.Value[0] == true)
+                {
+                    var newX = _currX - 1;
+                    _currX = newX;
+                }
+                else
+                {
+                    throw new InvalidOperationException("Can't go that way!");
+                }
+            }
+        }
+
     }
 
     /// <summary>
@@ -41,7 +58,21 @@ public class Maze
     /// </summary>
     public void MoveRight()
     {
-        // FILL IN CODE
+        foreach (var set in _mazeMap)
+        {
+            if (_mazeMap.ContainsKey((_currX, _currY)))
+            {
+                if (set.Value[1] == true)
+                {
+                    var newX = _currX + 1;
+                    _currX = newX;
+                }
+                else
+                {
+                    throw new InvalidOperationException("Can't go that way!");
+                }
+            }
+        }
     }
 
     /// <summary>
@@ -50,7 +81,20 @@ public class Maze
     /// </summary>
     public void MoveUp()
     {
-        // FILL IN CODE
+        foreach (var set in _mazeMap)
+        {
+            if (_mazeMap.ContainsKey((_currX, _currY)))
+            {
+                if (set.Value[2] == true)
+                {
+                    _currY = _currY - 1;
+                }
+                else
+                {
+                    throw new InvalidOperationException("Can't go that way!");
+                }
+            }
+        }
     }
 
     /// <summary>
@@ -59,7 +103,20 @@ public class Maze
     /// </summary>
     public void MoveDown()
     {
-        // FILL IN CODE
+        foreach (var set in _mazeMap)
+        {
+            if (_mazeMap.ContainsKey((_currX, _currY)))
+            {
+                if (set.Value[3] == true)
+                {
+                    _currY = _currY + 1;
+                }
+                else
+                {
+                    throw new InvalidOperationException("Can't go that way!");
+                }
+            }
+        }
     }
 
     public string GetStatus()

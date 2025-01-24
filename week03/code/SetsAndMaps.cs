@@ -56,11 +56,19 @@ public static class SetsAndMaps
     /// <returns>fixed array of divisors</returns>
     public static Dictionary<string, int> SummarizeDegrees(string filename)
     {
+        // locate degree at index 3,column 4, if degree is found in dictionary add 1 to key value, if not add key with value of 1
+        
+
         var degrees = new Dictionary<string, int>();
         foreach (var line in File.ReadLines(filename))
         {
             var fields = line.Split(",");
             // TODO Problem 2 - ADD YOUR CODE HERE
+            var degree = fields[3];
+            if (degrees.ContainsKey(degree))
+                degrees[degree] += 1;
+            else
+                degrees[degree] = 1;
         }
 
         return degrees;
@@ -84,7 +92,37 @@ public static class SetsAndMaps
     /// </summary>
     public static bool IsAnagram(string word1, string word2)
     {
-        // TODO Problem 3 - ADD YOUR CODE HERE
+        // compare the frequency characters occured within both words, if equal they are anagrams
+        
+        // dictionary to store frequency of characters
+        // Dictionary<char, int> charCount = new Dictionary<char, int>();
+
+        // // count frequency of each character in word1
+
+        // foreach (char ch in word1)
+        // {
+        //     charCount[ch] = charCount.GetValueOrDefault(ch, 0) +1;
+        // };
+
+        // // count frequency of each character in word2
+
+        // foreach (char ch in word2)
+        // {
+        //     charCount[ch] = charCount.GetValueOrDefault(ch, 0) -1;
+        // };
+
+        // // make sure all counts are 0
+        // foreach (var x in charCount)
+        // {
+        //     var count = charCount.Sum((x => x.Value)*-1);
+
+        //     if (count == 0)
+        //     {
+        //         return true;
+        //     }
+        //     return false;
+        // };
+
         return false;
     }
 
