@@ -192,7 +192,12 @@ public class SolveMazeTests
     public void SolveMaze_Small()
     {
         var results = new List<string>();
-        Maze smallMaze = new(3, 3, [1, 1, 1, 1, 0, 1, 1, 1, 2]);
+        Maze smallMaze = new(3, 3, 
+            [
+                1, 1, 1, 
+                1, 0, 1, 
+                1, 1, 2
+            ]);
         Recursion.SolveMaze(results, smallMaze);
 
         results.Sort();
